@@ -1,0 +1,10 @@
+{
+  "name": "generator-joomla",
+  "version": "1.0.0",
+  "keywords": [
+    "yeoman-generator"
+  ],
+  "dependencies": {
+    "yeoman-generator": "^0.18.9"
+  }
+}

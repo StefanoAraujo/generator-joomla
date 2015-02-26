@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<extension type="module"
+           client="site"
+           version="3.0"
+           method="upgrade">
+	<author><%= author %></author>
+	<authorEmail><%= authorEmail %></authorEmail>
+	<authorUrl><%= authorUrl %></authorUrl>
+	<copyright>Copyright (C) <%= year %> <%= author %>. All rights reserved.</copyright>
+	<creationDate><%= creationDate %></creationDate>
+	<description><%= name.toUpperCase() %>_XML_DESCRIPTION</description>
+	<name><%= name %></name>
+	<version>1.0.0</version>
+	<files>
+		<folder>assets</folder>
+		<folder>language</folder>
+		<folder>tmpl</folder>
+		<filename>helper.php</filename>
+		<filename>index.html</filename>
+		<filename module="<%= name %>"><%= name %>.php</filename>
+	</files>
+	<config>
+		<fields name="params">
+			<fieldset name="basic"
+			          addfieldpath="/modules/<%= name %>/fields">
+				<!-- Fields -->
+			</fieldset>
+			<fieldset name="advanced">
+				<field name="cache"
+				       type="list"
+				       default="1"
+				       label="COM_MODULES_FIELD_CACHING_LABEL"
+				       description="COM_MODULES_FIELD_CACHING_DESC">
+					<option value="1">JGLOBAL_USE_GLOBAL</option>
+					<option value="0">COM_MODULES_FIELD_VALUE_NOCACHING</option>
+				</field>
+			</fieldset>
+		</fields>
+	</config>
+</extension>
