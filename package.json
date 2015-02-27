@@ -11,5 +11,10 @@
   "repository": {
     "type": "git",
     "url": "git://github.com/Addaptive/generator-joomla.git"
+  },
+  "author": {
+    "name": "Addaptive",
+    "email": "info@addaptive.com",
+    "url": "https://github.com/Addaptive"
   }
 }
