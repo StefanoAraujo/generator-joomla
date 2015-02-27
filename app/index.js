@@ -13,6 +13,10 @@ module.exports = generators.Base.extend({
 			'Template' : 'tpl'
 		};
 
+		// Determine the project type on the current folder name
+		//var folderPrefix = this.destinationRoot().split(/\/|\\/).pop().split('_', 1)[0];
+		//this.log(defaultProjectType);
+
 		var prompts = [
 			{
 				type   : 'list',
@@ -27,7 +31,7 @@ module.exports = generators.Base.extend({
 				message : 'What\'s the name of the project?',
 				default : this.appname, // Default to current folder name
 				validate: function (answer) {
-					if (!answer.match(/(com|lib|mod|pkg|plg|tpl)_/)) {
+					if (!answer.match(/^(com|lib|mod|pkg|plg|tpl)_/)) {
 						return 'Your project name must start with com_, lib_, mod_, pkg_, plg_ or tpl_ depending on the project type you chosen.';
 					}
 
@@ -77,7 +81,8 @@ module.exports = generators.Base.extend({
 
 			// Build main project class name for Joomla
 			this.mainClassName = this.name.split('_');
-			this.mainClassName = this.mainClassName[0] + this.mainClassName[1].capitalizeFirstLetter();
+			this.mainClassName[1] = this.mainClassName[1].capitalizeFirstLetter(); // Camel casing the class name
+			this.mainClassName = this.mainClassName.join('_');
 
 			done();
 		}.bind(this));
