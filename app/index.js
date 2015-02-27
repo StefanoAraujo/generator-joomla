@@ -44,7 +44,8 @@ module.exports = generators.Base.extend({
 				message : 'Who is the author?', // todo store values and use them as next default
 				validate: function (answer) {
 					return answer.length > 0;
-				}
+				},
+				store   : true
 			},
 			{
 				type    : 'input',
@@ -56,7 +57,8 @@ module.exports = generators.Base.extend({
 					}
 
 					return true;
-				}
+				},
+				store   : true
 			},
 			{
 				type    : 'input',
@@ -68,7 +70,8 @@ module.exports = generators.Base.extend({
 					}
 
 					return true;
-				}
+				},
+				store   : true
 			}
 		];
 
