@@ -1,0 +1,7 @@
+{
+  "name": "<%= name %>",
+  "devDependencies": {
+    "grunt": "^0.4.5",
+    "grunt-contrib-compress": "^0.13.0"
+  }
+}
