@@ -3,14 +3,15 @@
  * @package   <%= name %>.
  * @author    <%= author %> <${ authorEmail }>
  * @copyright Copyright (C) <%= year %> <%= author %>
+ * @license   <%= license %>
  */
 
 defined('_JEXEC') or die;
 
 /**
- * Class <%= mainClassName %>Helper
+ * Class mod<%= className %>Helper
  */
-class <%= mainClassName %>Helper
+class mod<%= className %>Helper
 {
 	/**
 	 * @var array
@@ -20,7 +21,7 @@ class <%= mainClassName %>Helper
 	/**
 	 * @param array $params
 	 */
-	function __construct($params = array())
+	public function __construct($params = array())
 	{
 		$this->params = $params;
 	}

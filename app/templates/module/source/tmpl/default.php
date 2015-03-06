@@ -3,6 +3,7 @@
  * @package   <%= name %>.
  * @author    <%= author %> <${ authorEmail }>
  * @copyright Copyright (C) <%= year %> <%= author %>
+ * @license   <%= license %>
  */
 
 defined('_JEXEC') or die;

@@ -1,29 +1,57 @@
 var generators = require('yeoman-generator');
 
 module.exports = generators.Base.extend({
-	prompting : function () {
+	prompting        : function () {
 		var done = this.async();
 		var d = new Date();
-		var suffixes = {
-			'Component' : 'com',
-			'Library'   : 'lib',
-			'Module'    : 'mod',
-			'Package'   : 'pkg',
-			'Plugin'    : 'plg',
-			'Template'  : 'tpl'
+		var projectTypes = {
+			//'com': 'Component',
+			//'lib': 'Library',
+			'mod' : 'Module',
+			//'pkg' : 'Package',
+			'plg' : 'Plugin'
+			//'tpl' : 'Template'
+		};
+		var licenses = {
+			'GNU GPL v2.0' : 'GNU General Public License version 2 or later; see LICENSE.txt'
 		};
 
 		// Determine the project type on the current folder name
-		//var folderPrefix = this.destinationRoot().split(/\/|\\/).pop().split('_', 1)[0];
-		//this.log(defaultProjectType);
+		var defaultProjectType = this.destinationRoot().split(/\/|\\/).pop().split('_', 1)[0];
 
+		// List all prompts
 		var prompts = [
 			{
 				type    : 'list',
 				name    : 'project',
-				choices : Object.keys(suffixes),
+				choices : this._getObjectValues(projectTypes),
 				message : 'What\'s type of project you\'re about to create?',
-				default : Object.keys(suffixes)[2] // todo select the default based on actual folder prefix (mod, com, etc.)
+				default : projectTypes[defaultProjectType] || projectTypes['mod']
+			},
+			{
+				type    : 'list',
+				name    : 'group',
+				message : 'Which is the type of the plugin?',
+				choices : [
+					//'authentication',
+					//'captcha',
+					//'content',
+					'custom'
+					//'editors',
+					//'editors-xtd',
+					//'extension',
+					//'finder',
+					//'installer',
+					//'quickicon',
+					//'search',
+					//'system',
+					//'twofactorauth',
+					//'user'
+				],
+				when    : function (answers) {
+					return answers.project == projectTypes['plg'];
+				},
+				default : 'custom'
 			},
 			{
 				type     : 'input',
@@ -77,6 +105,26 @@ module.exports = generators.Base.extend({
 					return true;
 				},
 				store    : true
+			},
+			{
+				type     : 'input',
+				name     : 'languageTag',
+				message  : 'Which is the default language?',
+				validate : function (answer) {
+					if (!answer.match(/\w{2}-[A-Z]{2}/)) {
+						return 'Please provide a compliant language tag (ex. en-GB).';
+					}
+
+					return true;
+				},
+				default  : 'en-GB'
+			},
+			{
+				type    : 'list',
+				name    : 'license',
+				message : 'How do you license the project?',
+				choices : Object.keys(licenses),
+				default : licenses[0]
 			}
 		];
 
@@ -85,16 +133,15 @@ module.exports = generators.Base.extend({
 			this.authorEmail = answers.authorEmail;
 			this.authorUrl = answers.authorUrl;
 			this.description = answers.description;
+			this.group = answers.group;
+			this.languageTag = answers.languageTag;
 			this.name = answers.name;
 			this.project = answers.project;
+			this.license = licenses[answers.license];
 
 			// Build main project class name for Joomla
-			var nameParts = this.name.split('_');
-			nameParts[1] = nameParts[1].capitalizeFirstLetter(); // Camel casing the class name
-			this.mainClassName = nameParts.join('_');
-
-			// Obtain the beautiful for the project (last part of split name)
-			this.productName = nameParts.pop().capitalizeFirstLetter();
+			this.shortName = this.name.split('_').slice(1).join('_');
+			this.className = this.realName = this.shortName.capitalizeFirstLetter();
 
 			done();
 		}.bind(this));
@@ -103,20 +150,53 @@ module.exports = generators.Base.extend({
 		this.creationDate = d.getDate() + ' ' + d.toLocaleString('en-us', {month : "long"}) + ' ' + d.getFullYear();
 		this.year = d.getFullYear();
 	},
-	writing   : function () {
-		//this.directory(this.project.toLowerCase(), './'); // todo use the native method with a callback to rename the files name
-
-		if (this.project != 'Module') {
-			this.log('Project type no yet supported. Stay tuned or join the project on Github.');
-		}
-
+	writing          : function () {
 		var source = this.project.toLowerCase();
 		var root = this.sourceRoot() + '/' + source;
 		var files = this.expandFiles('**', {dot : true, cwd : root});
 
 		for (var i in files) {
-			this.copy(source + '/' + files[i], files[i].replace(/(mod|com|plg|pkg|lib)_foobar/g, this.name));
+			this.copy(source + '/' + files[i], this._rename(files[i]));
 		}
+	},
+	/**
+	 * Replace the name of a file with all prompted placeholders.
+	 *
+	 * @param name The name of the path to replace.
+	 * @returns {*}
+	 * @private
+	 */
+	_rename          : function (name) {
+		var replaces = {
+			'group'       : this.group,
+			'languageTag' : this.languageTag,
+			'name'        : this.name,
+			'shortName'   : this.shortName
+		};
+
+		for (var placeholder in replaces) {
+			name = name.replace(new RegExp(placeholder, 'g'), replaces[placeholder]);
+		}
+
+		return name;
+	},
+	/**
+	 * Returns the values of an objects, like associative arrays.
+	 *
+	 * @param obj The object to parse.
+	 * @returns {Array} The list of the values.
+	 * @private
+	 */
+	_getObjectValues : function (obj) {
+		var values = [];
+
+		for (var key in obj) {
+			if (obj.hasOwnProperty(key)) {
+				values.push(obj[key]);
+			}
+		}
+
+		return values;
 	}
 });
 
