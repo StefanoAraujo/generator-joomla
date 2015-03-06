@@ -2,7 +2,7 @@ module.exports = function (grunt) {
 	var pkg = grunt.file.readJSON('package.json');
 
 	// Obtain the manifest name (for plugins, without prefix)
-	var name = pkg.replace(/^plg_/);
+	var name = pkg.name.replace(/^plg_/, '');
 
 	// Read version from the Joomla manifest
 	var manifest = grunt.file.read('source/' + name + '.xml');
