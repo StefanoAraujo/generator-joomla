@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <extension type="plugin"
-           client="<%= group %>"
+           group="<%= group %>"
            version="3.0"
            method="upgrade">
 	<author><%= author %></author>

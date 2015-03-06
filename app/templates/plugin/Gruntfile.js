@@ -17,7 +17,7 @@ module.exports = function (grunt) {
 			main    : {
 				expand : true,
 				cwd    : 'source/',
-				src    : ['**/*', '!**/sass/**', '!**/less/**'] // Exclude CSS preprocessors folders
+				src    : ['**/*', '!**/sass/**', '!**/less/**', '!**/*.map'] // Exclude CSS preprocessors folders
 			}
 		}
 	});

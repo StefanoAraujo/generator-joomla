@@ -11,7 +11,7 @@ defined('_JEXEC') or die;
 /**
  * Class plg<%= group.capitalizeFirstLetter() %><%= className %>
  */
-class plg<%= group.capitalizeFirstLetter() %><%= className %> extends JPlugin {
+class plg<%= group.capitalizeFirstLetter() %><%= className %> extends JPlugin
 {
 	<% if(group == 'custom') { %>
 	/**
