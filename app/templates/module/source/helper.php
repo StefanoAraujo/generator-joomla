@@ -2,16 +2,16 @@
 /**
  * @package   <%= name %>.
  * @author    <%= author %> <${ authorEmail }>
- * @copyright Copyright (C) <%= year %> <%= author %>
+ * @copyright Copyright (C) <%= creationYear %> <%= author %>
  * @license   <%= license %>
  */
 
 defined('_JEXEC') or die;
 
 /**
- * Class mod<%= className %>Helper
+ * Class mod<%= nameCamelcase %>Helper
  */
-class mod<%= className %>Helper
+class mod<%= nameCamelcase %>Helper
 {
 	/**
 	 * @var array

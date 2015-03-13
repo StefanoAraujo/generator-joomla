@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<extension type="plugin"
+           group="<%= group %>"
+           version="3.0"
+           method="upgrade">
+	<author><%= author %></author>
+	<authorEmail><%= authorEmail %></authorEmail>
+	<authorUrl><%= authorUrl %></authorUrl>
+	<copyright>Copyright (C)<%= creationYear %><%= author %>. All rights reserved.</copyright>
+	<creationDate><%= creationDate %></creationDate>
+	<description><%= nameUppercase %>_XML_DESCRIPTION</description>
+	<license><%= license %></license>
+	<name><%= name %></name>
+	<version>1.0.0</version>
+	<files>
+		<folder>assets</folder>
+		<folder>fields</folder>
+		<folder>language</folder>
+		<filename>index.html</filename>
+		<filename>LICENSE.txt</filename>
+		<filename plugin="<%= unprefixedName %>"><%= unprefixedName %>.php</filename>
+	</files>
+	<config>
+		<fields name="params">
+			<fieldset name="basic"
+			          addfieldpath="/modules/<%= name %>/fields">
+				<!-- Your fields here -->
+			</fieldset>
+	</config>
+</extension>

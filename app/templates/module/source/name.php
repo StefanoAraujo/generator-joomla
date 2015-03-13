@@ -2,7 +2,7 @@
 /**
  * @package   <%= name %>.
  * @author    <%= author %> <${ authorEmail }>
- * @copyright Copyright (C) <%= year %> <%= author %>
+ * @copyright Copyright (C) <%= creationYear %> <%= author %>
  * @license   <%= license %>
  */
 
@@ -16,7 +16,7 @@ $base = JUri::root(true);
 $doc  = JFactory::getDocument();
 
 // Load something
-$something = mod<%= className %>::getSomething();
+$something = mod<%= nameCamelcase %>Helper::getSomething();
 
 // Add assets
 $doc->addStyleSheet($base . '/modules/<%= name %>/assets/css/main.css');

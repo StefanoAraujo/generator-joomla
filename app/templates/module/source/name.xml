@@ -6,9 +6,9 @@
 	<author><%= author %></author>
 	<authorEmail><%= authorEmail %></authorEmail>
 	<authorUrl><%= authorUrl %></authorUrl>
-	<copyright>Copyright (C) <%= year %> <%= author %>. All rights reserved.</copyright>
+	<copyright>Copyright (C) <%= creationYear %> <%= author %>. All rights reserved.</copyright>
 	<creationDate><%= creationDate %></creationDate>
-	<description><%= name.toUpperCase() %>_XML_DESCRIPTION</description>
+	<description><%= nameUppercase %>_XML_DESCRIPTION</description>
 	<name><%= name %></name>
 	<version>1.0.0</version>
 	<files>

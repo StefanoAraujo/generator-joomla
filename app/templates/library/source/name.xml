@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<extension type="library"
+           version="3.0"
+           method="upgrade">
+	<author><%= author %></author>
+	<authorEmail><%= authorEmail %></authorEmail>
+	<authorUrl><%= authorUrl %></authorUrl>
+	<copyright>Copyright (C) <%= creationYear %> <%= author %>. All rights reserved.</copyright>
+	<creationDate><%= creationDate %></creationDate>
+	<description><![CDATA[<%= description %>]]></description>
+	<libraryname><%= unprefixedName %></libraryname>
+	<name><%= name %></name>
+	<version>1.0.0</version>
+	<files folder="<%= unprefixedName %>">
+		<filename>LICENSE.txt</filename>
+	</files>
+</extension>

@@ -1,7 +1,7 @@
 module.exports = function (grunt) {
 	var pkg = grunt.file.readJSON('package.json');
 
-	// Obtain the manifest name (for plugins, without prefix)
+	// Remove the name suffix to target the manifest
 	var name = pkg.name.replace(/^plg_/, '');
 
 	// Read version from the Joomla manifest
@@ -10,14 +10,14 @@ module.exports = function (grunt) {
 
 	// Project configuration.
 	grunt.initConfig({
-		compress : {
-			options : {
-				archive : 'dist/' + pkg.name + '-' + version + '.tar.gz'
+		compress: {
+			options: {
+				archive: 'dist/' + pkg.name + '-' + version + '.tgz'
 			},
-			main    : {
-				expand : true,
-				cwd    : 'source/',
-				src    : ['**/*', '!**/sass/**', '!**/less/**', '!**/*.map'] // Exclude CSS preprocessors folders
+			main   : {
+				expand: true,
+				cwd   : 'source/',
+				src   : ['**/*', '!**/scss/**', '!**/sass/**', '!**/less/**', '!**/*.map']
 			}
 		}
 	});

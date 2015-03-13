@@ -8,8 +8,10 @@
 
 defined('_JEXEC') or die;
 
-?>
+/**
+ * Class plg<%= groupCamelcase %><%= nameCamelcase %>
+ */
+class plg<%= groupCamelcase %><%= nameCamelcase %> extends JPlugin
+{
 
-<div class="<%= _.slugify(name) %>">
-	<!-- Your code here -->
-</div>
+}
