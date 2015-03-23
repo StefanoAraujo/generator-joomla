@@ -29,7 +29,7 @@ class mod<%= nameCamelcase %>Helper
 	/**
 	 * @return bool
 	 */
-	public function getSomething()
+	public static function getSomething()
 	{
 		return true;
 	}
