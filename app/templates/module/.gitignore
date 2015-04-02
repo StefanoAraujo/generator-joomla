@@ -1,7 +1,0 @@
-.DS_Store
-.idea/
-bower_components/
-composer.lock
-dist/
-node_modules/
-vendor/

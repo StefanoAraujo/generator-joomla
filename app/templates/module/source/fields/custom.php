@@ -1,9 +1,6 @@
 <?php
 /**
- * @package   <%= name %>.
- * @author    <%= author %> <${ authorEmail }>
- * @copyright Copyright (C) <%= creationYear %> <%= author %>
- * @license   <%= license %>
+ * @copyright
  */
 
 defined('_JEXEC') or die;

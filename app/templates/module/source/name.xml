@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <extension type="module"
            client="site"
            version="3.0"
@@ -9,6 +9,7 @@
 	<copyright>Copyright (C) <%= creationYear %> <%= author %>. All rights reserved.</copyright>
 	<creationDate><%= creationDate %></creationDate>
 	<description><%= nameUppercase %>_XML_DESCRIPTION</description>
+	<license><%= license %></license>
 	<name><%= name %></name>
 	<version>1.0.0</version>
 	<files>
@@ -18,6 +19,7 @@
 		<folder>tmpl</folder>
 		<filename>helper.php</filename>
 		<filename>index.html</filename>
+		<filename>LICENSE.txt</filename>
 		<filename module="<%= name %>"><%= name %>.php</filename>
 	</files>
 	<config>
