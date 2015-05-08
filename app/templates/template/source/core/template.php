@@ -36,15 +36,56 @@ class Template
 	}
 
 	/**
-	 * Return a parameter of the site configuration.
+	 * Prepend a script (or scripts) before existent ones.
 	 *
-	 * @param string $parameter The name of the parameter to retrieve.
+	 * @param string|array $filename
+	 * @param bool         $defer
+	 * @param bool         $async
+	 */
+	public function script($filename, $defer = false, $async = false)
+	{
+		$scripts = [];
+
+		foreach ((array) $filename as $js)
+		{
+			$js           = preg_match('/\/\//', $js) ? $js : $this->asset('js/' . $js);
+			$scripts[$js] = ['mime' => 'text/javascript', 'defer' => $defer, 'async' => $async];
+		}
+
+		$this->document->_scripts = $scripts + $this->document->_scripts;
+	}
+
+
+	/**
+	 * Prepend a stylesheet (or stylesheets) before existent ones.
+	 *
+	 * @param string|array $filename
+	 * @param bool         $defer
+	 * @param bool         $async
+	 */
+	public function css($filename)
+	{
+		$styles = [];
+
+		foreach ((array) $filename as $css)
+		{
+			$css          = preg_match('/\/\//', $css) ? $css : $this->asset('css/' . $css);
+			$styles[$css] = ['mime' => 'text/css', 'media' => '', 'attribs' => []];
+		}
+
+		$this->document->_styleSheets = $styles + $this->document->_styleSheets;
+	}
+
+	/**
+	 * Return a parameter of the template or of the site.
+	 *
+	 * @param string $name The name of the parameter to get.
 	 *
 	 * @return mixed The value of the parameter.
 	 */
-	public function site_config($parameter)
+	public function config($name, $site_config = false)
 	{
-		return JFactory::getConfig()->get($parameter);
+		return $site_config ? JFactory::getConfig()->get($name) : $this->document->params->get($name);
 	}
 
 	/**
