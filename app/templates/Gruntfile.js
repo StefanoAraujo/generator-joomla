@@ -30,8 +30,7 @@ module.exports = function (grunt) {
                     src: [name + '.xml', 'script.php'],
                     dest: 'dist/.cache/source'
                 }],
-                updateAndDelete: true,
-                verbose: true
+                updateAndDelete: true
             }
         },
         uglify: {
