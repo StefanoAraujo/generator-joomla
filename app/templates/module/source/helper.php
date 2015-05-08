@@ -11,23 +11,17 @@ defined('_JEXEC') or die;
 class mod<%= nameCamelcase %>Helper
 {
 	/**
+	 * The parameters of the module.
+	 *
 	 * @var array
 	 */
-	protected $params = array();
+	protected $params = null;
 
 	/**
 	 * @param array $params
 	 */
-	public function __construct($params = array())
+	public function __construct(Joomla\Registry\Registry $params = null)
 	{
 		$this->params = $params;
-	}
-
-	/**
-	 * @return bool
-	 */
-	public static function getSomething()
-	{
-		return true;
 	}
 }
