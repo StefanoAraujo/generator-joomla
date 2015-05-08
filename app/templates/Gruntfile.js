@@ -51,6 +51,15 @@ module.exports = function (grunt) {
                 src: 'dist/.cache/source/**/*.{jpe?g,png,gif,svg}'
             }
         },
+        imageEmbed: {
+            target: {
+                expand: true,
+                src: 'dist/.cache/source/**/*.css',
+                options: {
+                    deleteAfterEncoding: true
+                }
+            }
+        },
         copy: {
             main: {
                 expand: true,
@@ -83,5 +92,5 @@ module.exports = function (grunt) {
 
     // Registering tasks
     grunt.registerTask('default', ['sync', 'optimizing', 'compress']);
-    grunt.registerTask('optimizing', ['newer:uglify:target', 'newer:cssmin:target', 'newer:imagemin:target', 'newer:copy:main']);
+    grunt.registerTask('optimizing', ['newer:uglify:target', 'newer:cssmin:target', 'newer:imageEmbed:target', 'newer:imagemin:target', 'newer:copy:main']);
 };
