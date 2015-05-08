@@ -223,6 +223,7 @@ module.exports = generators.Base.extend({
         // Copy common files
         this.copy('.gitignore', '.gitignore');
         this.copy('Gruntfile.js', 'Gruntfile.js');
+        this.template('bower.json', 'bower.json', this.data);
         this.template('package.json', 'package.json', this.data);
     },
     /**
